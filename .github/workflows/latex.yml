@@ -16,10 +16,10 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
-          working_directory: LineFollowingRobot_Report
+          working_directory: LineFollowingRobot_Report/LineFollowingRobot_Report
 
       - name: Upload PDF
         uses: actions/upload-artifact@v4
         with:
           name: LineFollowingRobotReport
-          path: LineFollowingRobot_Report/*.pdf
+          path: LineFollowingRobot_Report/LineFollowingRobot_Report/*.pdf
