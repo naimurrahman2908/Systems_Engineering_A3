@@ -1,2 +1,89 @@
-\section{System Design Engineering}
+\section{System Design and Engineering Approach}
 \label{sec:system_design_engineering}
+\subsection{System Overview}
+
+The Line Following Robot is an autonomous system designed to follow a predefined path while detecting obstacles during operation. The system combines sensing, control, and actuation components to achieve reliable navigation. A systems engineering approach was applied throughout the project to identify requirements, define subsystem interactions, and develop an organized system architecture before implementation.
+
+The robot consists of four main subsystems: the sensing subsystem, control subsystem, actuation subsystem, and power subsystem. These subsystems work together to support autonomous movement and obstacle detection.
+
+\subsection{System Architecture}
+
+A Block Definition Diagram (BDD) was created to represent the main components of the robot and their relationships. The diagram provides an overview of how the sensing, control, movement, and power elements are organized within the system.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{figures/bdd.png}
+\caption{Block Definition Diagram of the Line Following Robot}
+\label{fig:bdd}
+\end{figure}
+
+The sensing subsystem includes infrared (IR) sensors for line detection and ultrasonic sensors for obstacle detection. The control subsystem is based on the Arduino Uno microcontroller, which processes sensor information and determines the required motor actions. The actuation subsystem consists of the L293D motor driver and two DC motors that provide movement. The power subsystem supplies electrical energy to all hardware components.
+
+\subsection{Internal Component Interaction}
+
+An Internal Block Diagram (IBD) was developed to illustrate the connections and interactions between system components. The diagram shows how information and control signals are exchanged within the robot.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{figures/ibd.png}
+\caption{Internal Block Diagram}
+\label{fig:ibd}
+\end{figure}
+
+The IR sensors continuously monitor the line position and send data to the Arduino controller. At the same time, the ultrasonic sensors measure the distance to nearby obstacles. Based on these inputs, the Arduino generates appropriate control signals for the motor driver, which adjusts the speed and direction of the motors.
+
+\subsection{Functional Behaviour}
+
+The behaviour of the robot was analysed using system modelling techniques. An Activity Diagram was created to describe the overall operational workflow.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{figures/activity_diagram.png}
+\caption{Activity Diagram}
+\label{fig:activity}
+\end{figure}
+
+The process begins with system initialization. The robot then continuously reads sensor data, evaluates the position of the line and the presence of obstacles, determines the required action, and updates motor commands. This cycle is repeated throughout operation.
+
+A Sequence Diagram was also developed to represent the interaction between system components during robot operation.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{figures/sequence_diagram.png}
+\caption{Sequence Diagram}
+\label{fig:sequence}
+\end{figure}
+
+The sequence diagram illustrates how information is exchanged between the sensors, controller, and actuators during line-following and obstacle-detection activities.
+
+\subsection{Use Case Analysis}
+
+A Use Case Diagram was developed to identify the main functions of the robot from the user’s perspective.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{figures/use_case_diagram.png}
+\caption{Use Case Diagram}
+\label{fig:usecase}
+\end{figure}
+
+The main use cases include starting the robot, following the line, detecting obstacles, controlling movement, and stopping the robot. These functions represent the primary operational requirements of the system.
+
+\subsection{System States}
+
+A State Machine Diagram was created to model the different operational states of the robot.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{figures/state_machine.png}
+\caption{State Machine Diagram}
+\label{fig:state}
+\end{figure}
+
+The robot initially remains in the Idle state. Once activated, it transitions to the Line Following state. When an obstacle is detected, the system moves to the Obstacle Detected state and performs a stop or avoidance action. After the obstacle is cleared, the robot returns to normal operation.
+
+\subsection{Design Decisions}
+
+Several design decisions were made during the development of the prototype. The Arduino Uno was selected because it is easy to program, widely supported, and compatible with various sensors and motor drivers. IR sensors were chosen for accurate line detection, while ultrasonic sensors were used to provide reliable obstacle detection. The L293D motor driver was selected because it allows simple and effective control of two DC motors.
+
+The use of SysML diagrams improved system understanding by providing both structural and behavioural views of the robot. These models supported the implementation process and helped ensure consistency between system requirements and the final prototype design.
