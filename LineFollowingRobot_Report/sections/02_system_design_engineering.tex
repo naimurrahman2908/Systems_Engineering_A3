@@ -12,10 +12,11 @@ A Block Definition Diagram (BDD) was created to represent the main components of
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.45\textwidth]{figures/bdd.png}
+\includegraphics[width=\columnwidth]{figures/bdd.png}
 \caption{Block Definition Diagram of the Line Following Robot}
 \label{fig:bdd}
 \end{figure}
+\FloatBarrier
 
 The sensing subsystem includes infrared (IR) sensors for line detection and ultrasonic sensors for obstacle detection. The control subsystem is based on the Arduino Uno microcontroller, which processes sensor information and determines the required motor actions. The actuation subsystem consists of the L293D motor driver and two DC motors that provide movement. The power subsystem supplies electrical energy to all hardware components.
 
@@ -25,10 +26,11 @@ An Internal Block Diagram (IBD) was developed to illustrate the connections and 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.45\textwidth]{figures/ibd.png}
+\includegraphics[width=\columnwidth]{figures/ibd.png}
 \caption{Internal Block Diagram}
 \label{fig:ibd}
 \end{figure}
+\FloatBarrier
 
 The IR sensors continuously monitor the line position and send data to the Arduino controller. At the same time, the ultrasonic sensors measure the distance to nearby obstacles. Based on these inputs, the Arduino generates appropriate control signals for the motor driver, which adjusts the speed and direction of the motors.
 
@@ -38,10 +40,11 @@ The behaviour of the robot was analysed using system modelling techniques. An Ac
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.45\textwidth]{figures/activity_diagram.png}
+\includegraphics[width=\columnwidth]{figures/activity_diagram.png}
 \caption{Activity Diagram}
 \label{fig:activity}
 \end{figure}
+\FloatBarrier
 
 The process begins with system initialization. The robot then continuously reads sensor data, evaluates the position of the line and the presence of obstacles, determines the required action, and updates motor commands. This cycle is repeated throughout operation.
 
@@ -49,10 +52,11 @@ A Sequence Diagram was also developed to represent the interaction between syste
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.45\textwidth]{figures/sequence_diagram.png}
+\includegraphics[width=\columnwidth]{figures/sequence_diagram.png}
 \caption{Sequence Diagram}
 \label{fig:sequence}
 \end{figure}
+\FloatBarrier
 
 The sequence diagram illustrates how information is exchanged between the sensors, controller, and actuators during line-following and obstacle-detection activities.
 
@@ -62,10 +66,11 @@ A Use Case Diagram was developed to identify the main functions of the robot fro
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.45\textwidth]{figures/use_case_diagram.png}
+\includegraphics[width=\columnwidth]{figures/use_case_diagram.png}
 \caption{Use Case Diagram}
 \label{fig:usecase}
 \end{figure}
+\FloatBarrier
 
 The main use cases include starting the robot, following the line, detecting obstacles, controlling movement, and stopping the robot. These functions represent the primary operational requirements of the system.
 
@@ -75,10 +80,11 @@ A State Machine Diagram was created to model the different operational states of
 
 %\begin{figure}[htbp]
 %\centering
-%\includegraphics[width=0.45\textwidth]{figures/state_machine.png}
+%\includegraphics[width=\columnwidth]{figures/state_machine.png}
 %\caption{State Machine Diagram}
 %\label{fig:state}
 %\end{figure}
+\FloatBarrier
 
 
 The robot initially remains in the Idle state. Once activated, it transitions to the Line Following state. When an obstacle is detected, the system moves to the Obstacle Detected state and performs a stop or avoidance action. After the obstacle is cleared, the robot returns to normal operation.
