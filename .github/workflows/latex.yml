@@ -15,8 +15,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v3
@@ -28,12 +26,9 @@ jobs:
         run: |
           mv LineFollowingRobot_Report/main.pdf LineFollowingRobot_Report/report.pdf
 
-      - name: Pull latest changes
-        run: |
-          git pull --rebase origin main
-
       - name: Commit PDF to Repository
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Update generated PDF
           file_pattern: LineFollowingRobot_Report/report.pdf
+          push_options: --force
