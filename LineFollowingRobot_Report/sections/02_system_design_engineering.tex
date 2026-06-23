@@ -78,13 +78,13 @@ The main use cases include starting the robot, following the line, detecting obs
 
 A State Machine Diagram was created to model the different operational states of the robot.
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{figures/state_machine.png}
 \caption{State Machine Diagram}
 \label{fig:state}
 \end{figure}
-\FloatBarrier
+%\FloatBarrier
 
 
 The robot initially remains in the Idle state. Once activated, it transitions to the Line Following state. When an obstacle is detected, the system moves to the Obstacle Detected state and performs a stop or avoidance action. After the obstacle is cleared, the robot returns to normal operation.
