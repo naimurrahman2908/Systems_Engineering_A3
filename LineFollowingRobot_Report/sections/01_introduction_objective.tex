@@ -7,3 +7,13 @@ Automated Guided Vehicles (AGVs) are smart, driverless vehicles that bring the s
 Line following and collision avoidance serve as the fundamental navigation and safety pillars [3]. Together, these embedded subsystems ensure the AGV can optimize space by working seamlessly alongside human workers while strictly complying with industrial safety standards like ISO 3691-4 [4, 5]. 
 
 This project focuses on the systems engineering, prototyping, and development of a compact, microcontroller-driven autonomous vehicle designed for precise trajectory tracking and proactive collision mitigation [6]. 
+
+\subsection{Objective}
+
+The primary goal of this project is to implement, test, and validate a working prototype of an autonomous mobile vehicle using model-based prototyping principles. To meet the course milestones, the system must achieve the following specific technical objectives:
+\begin{itemize}
+    \item \textbf{Line Following:} Use a set of infrared (IR) sensors and standard if-else logic to control the motors so the car cleanly follows a track line.
+    \item \textbf{Obstacle Detection and Avoidance:} Integrate a pair of ultrasonic sensors to monitor front proximity metrics and implement a maneuver sequence to safely bypass detected obstructions before reacquiring the primary track line.
+    \item \textbf{Black Zone Detection and Turnaround:} Program the car to use its floor IR sensors to spot when it hits a solid black patch on the track, stop moving forward, spin 180 degrees on the spot, and follow the line back the other way.
+    \item \textbf{Power and Motor Integration:} Wire the hardware so that a motor controller takes a 12V battery source, drops it down to 5V to safely power the Arduino, and handles the high-current demands of the DC motors.
+\end{itemize}
