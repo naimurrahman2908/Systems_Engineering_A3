@@ -249,7 +249,7 @@ GitHub Actions automatically:
 The latest IEEE report is available in:
 
 ```
-LineFollowingRobot_Report/report.pdf
+[Download PDF Report](LineFollowingRobot_Report/report.pdf)
 ```
 
 ---
