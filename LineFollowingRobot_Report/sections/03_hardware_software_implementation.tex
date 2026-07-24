@@ -3,61 +3,59 @@
 
 \subsection{Hardware Implementation}
 
-The developed prototype consists of a compact autonomous mobile robot designed to perform line following and obstacle avoidance using embedded control techniques. The hardware architecture integrates sensing, control, actuation, and power management into a single platform. Figure~\ref{fig:robot} shows the completed hardware prototype used during implementation and experimental testing.
+The developed prototype consists of a compact autonomous mobile robot capable of line following and obstacle avoidance. The system integrates sensing, control, actuation, and power management into a single embedded platform. Figure~\ref{fig:robot} shows the completed robot prototype used during implementation and testing.
 
-The Arduino Uno microcontroller serves as the central processing unit of the robot. It continuously receives data from two infrared (IR) sensors and two HC-SR04 ultrasonic sensors, processes the incoming information, and generates motor control commands based on the implemented navigation algorithm. The IR sensors are mounted at the front of the robot to detect the black line on the track, while the ultrasonic sensors monitor the surrounding environment to identify obstacles during movement.
+The Arduino Uno microcontroller serves as the central controller of the robot. It continuously receives data from two infrared (IR) sensors and two HC-SR04 ultrasonic sensors, processes the sensor information, and generates motor control commands. The IR sensors are mounted at the front of the robot to detect the black line, while the ultrasonic sensors continuously monitor the distance to obstacles during navigation.
 
-Motor control is achieved using an L293D motor driver, which interfaces the Arduino Uno with two DC geared motors. The motor driver receives pulse-width modulation (PWM) signals from the Arduino and regulates both the speed and direction of each motor. To compensate for minor mechanical differences between the motors, different calibrated PWM values were applied, resulting in stable straight-line motion during testing.
+An L293D motor driver is used to control two DC geared motors. The motor driver receives PWM signals from the Arduino and regulates the speed and direction of both motors. To compensate for mechanical differences between the motors, calibrated PWM values were applied to obtain stable straight-line movement.
 
-The complete system is powered by a 12\,V battery connected to the motor driver module. In addition to driving the motors, the motor driver provides a regulated 5\,V supply to power the Arduino Uno and all connected sensors. This configuration simplifies the overall power distribution while ensuring stable operation of both the control electronics and the mechanical drive system.
+The complete system is powered by a 12\,V battery. The motor driver supplies a regulated 5\,V output to power the Arduino Uno and the connected sensors. This configuration provides a simple and reliable power distribution while maintaining stable operation of both the electronic and mechanical components.
 
-The electronic components are mounted on a lightweight wooden chassis using a breadboard for rapid prototyping and simplified wiring. The modular arrangement allows individual components to be easily replaced or modified during development and testing without affecting the remainder of the system.
+The electronic components are mounted on a lightweight wooden chassis using a breadboard for rapid prototyping. This modular arrangement simplifies wiring, maintenance, and future hardware modifications.
 
-\begin{table}[!t]
-\caption{Hardware Components Used in the Robot}
+\begin{table}[ht]
+\caption{Hardware Components}
 \centering
-\begin{tabular}{|l|c|p{4.8cm}|}
+\begin{tabular}{lll}
 \hline
-\textbf{Component} & \textbf{Qty} & \textbf{Function}\\
+\textbf{Component} & \textbf{Qty} & \textbf{Purpose} \\
 \hline
-Arduino Uno & 1 & Central controller responsible for sensor processing and motor control\\
-L293D Motor Driver & 1 & Controls the speed and direction of two DC motors\\
-DC Geared Motors & 2 & Generate forward, reverse and turning motion\\
-IR Sensors & 2 & Detect the black line on the track\\
-HC-SR04 Ultrasonic Sensors & 2 & Detect nearby obstacles\\
-Breadboard & 1 & Rapid prototyping and circuit connections\\
-Robot Chassis & 1 & Supports all hardware components\\
-Wheels and Caster Wheel & 3 & Enable movement and stability\\
-12\,V Battery & 1 & Supplies electrical power to the robot\\
+Arduino Uno & 1 & Main controller \\
+L293D Motor Driver & 1 & Motor control \\
+DC Motors & 2 & Robot movement \\
+IR Sensors & 2 & Line detection \\
+HC-SR04 Sensors & 2 & Obstacle detection \\
+Breadboard & 1 & Circuit prototyping \\
+12\,V Battery & 1 & Power supply \\
+Wooden Chassis & 1 & Mechanical support \\
 \hline
 \end{tabular}
 \label{tab:hardware}
 \end{table}
 
-\begin{figure}[!t]
+\begin{figure}[ht]
 \centering
-% Update the image path if necessary.
-\includegraphics[width=0.45\linewidth]{figures/robot.jpg}
+\includegraphics[width=0.48\linewidth]{robot.png}
 \caption{Final hardware prototype of the autonomous line-following and obstacle-avoidance robot.}
 \label{fig:robot}
 \end{figure}
 
 \subsection{Software Implementation}
 
-The control software was developed using the Arduino Integrated Development Environment (Arduino IDE) in C++. A modular programming approach was adopted to improve readability, debugging, and future system expansion. Separate functions were implemented for sensor acquisition, motor control, line following, obstacle detection, and obstacle avoidance.
+The control software was developed using the Arduino Integrated Development Environment (Arduino IDE) in C++. A modular programming approach was adopted to separate sensor acquisition, motor control, obstacle detection, and navigation into independent software functions. This improves readability, simplifies debugging, and allows future system extensions.
 
-During system initialization, the Arduino configures all digital input and output pins, initializes the infrared and ultrasonic sensors, enables the motor driver, and establishes serial communication for debugging purposes. Once initialization is complete, the robot continuously executes the main control loop.
+During initialization, the Arduino configures all digital input and output pins, initializes the infrared and ultrasonic sensors, and enables the motor driver. After initialization, the software repeatedly executes the main control loop throughout the robot's operation.
 
-The first stage of each control cycle performs obstacle detection. Both ultrasonic sensors continuously measure the distance to nearby objects. If either sensor detects an obstacle within the predefined safety threshold, the robot immediately stops and performs a second measurement to verify the detection before executing the obstacle avoidance routine.
+The first stage of the control algorithm continuously checks the ultrasonic sensors for nearby obstacles. When an obstacle is detected within the predefined safety distance, the robot immediately stops and confirms the measurement before executing the obstacle avoidance routine.
 
-When no obstacle is detected, the software performs line following using the two infrared sensors. The sensor readings determine whether the robot should move forward, turn left, or turn right. Independent PWM control of the two motors enables smooth steering corrections during navigation.
+If no obstacle is detected, the robot performs line following using the two infrared sensors. Based on the sensor readings, the controller determines whether the robot should move forward, turn left, or turn right. Independent PWM control of the two motors enables smooth steering corrections while following the track.
 
-To improve navigation reliability, the software stores the previous movement direction. If both infrared sensors temporarily lose the line, the robot searches in the last known direction until the track is detected again. After bypassing an obstacle, the robot continues searching until the line is reacquired and normal operation resumes. The program also records the number of detected obstacles and applies an alternative recovery manoeuvre after the second obstacle to improve overall navigation performance.
+To improve navigation reliability, the software stores the previous movement direction. If both infrared sensors temporarily lose the line, the robot searches in the last known direction until the track is detected again. After avoiding an obstacle, the robot continues searching until the line is reacquired before resuming normal navigation.
 
-The implemented software continuously executes the control loop by reading sensor data, evaluating the surrounding environment, and generating the appropriate motor commands. Priority is always given to obstacle detection to ensure safe navigation. When no obstacle is present, the robot follows the predefined line using the infrared sensors. The integration of these software modules enables reliable autonomous operation while maintaining a simple and computationally efficient control strategy suitable for embedded systems.
+Overall, the implemented software provides reliable autonomous operation while maintaining a computationally efficient control strategy suitable for embedded systems.
 
 \subsection{Hardware--Software Integration}
 
-The hardware and software were developed as a tightly integrated embedded system. Sensor data acquired by the infrared and ultrasonic sensors are continuously processed by the Arduino Uno, which determines the appropriate movement commands according to the implemented control algorithm. These commands are transmitted to the L293D motor driver, which regulates the speed and direction of the two DC motors using PWM signals.
+The hardware and software operate together as a closed-loop embedded system. Sensor information collected by the infrared and ultrasonic sensors is processed by the Arduino Uno, which determines the appropriate movement commands. These commands are transmitted to the L293D motor driver, which controls the speed and direction of the two DC motors.
 
-The continuous interaction between sensing, processing, and actuation enables the robot to follow a predefined line, detect nearby obstacles, execute avoidance manoeuvres, recover the original track, and continue navigation without user intervention. The implementation demonstrates that reliable autonomous behaviour can be achieved using low-cost hardware combined with an efficient embedded control algorithm.
+The continuous interaction between sensing, processing, and actuation enables the robot to follow a predefined path, detect obstacles, execute avoidance manoeuvres, and return to the original track without external intervention. The implementation demonstrates that reliable autonomous behaviour can be achieved using low-cost hardware combined with an efficient embedded control algorithm.
