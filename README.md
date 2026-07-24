@@ -1,132 +1,207 @@
-# Line Following Robot Prototype
+# 🤖 Line Following and Obstacle Avoidance Robot
 
-## Project Overview
-
-This project presents the design and development of a Line Following Robot Prototype as part of the Systems Engineering course at Hochschule Hamm-Lippstadt.
-
-The robot is designed to autonomously follow a predefined path using infrared (IR) sensors while detecting obstacles using ultrasonic sensors. The system integrates hardware components, embedded software, system modeling techniques, and simulation-based validation.
-
----
-
-## Team Members
-
-- Naimur Rahman
-- Hany Chowdhury
-- Torikul Islam
-- Adham Elsaygh
+![Arduino](https://img.shields.io/badge/Platform-Arduino-blue)
+![Language](https://img.shields.io/badge/Language-C++-orange)
+![Documentation](https://img.shields.io/badge/Documentation-LaTeX-green)
+![License](https://img.shields.io/badge/Project-Academic-lightgrey)
 
 ---
 
-## Project Objectives
+## 📖 Project Overview
 
-The main objectives of this project are:
+This repository contains the design, implementation, modelling, and testing of an autonomous **Line Following and Obstacle Avoidance Robot** developed as part of the **Systems Engineering** course at **Hochschule Hamm-Lippstadt (HSHL)**.
 
-- Design an autonomous line-following robot
-- Detect and avoid obstacles during navigation
-- Apply systems engineering principles throughout development
-- Create SysML models for system analysis and design
-- Validate system behavior through simulation and testing
+The robot autonomously follows a predefined black line using infrared (IR) sensors while detecting obstacles with ultrasonic sensors. The project combines embedded software, hardware integration, SysML modelling, and automated technical documentation using LaTeX.
 
 ---
 
-## System Architecture
+## 👥 Team Members
 
-The robot consists of the following major subsystems:
+| Member | Responsibility |
+|---------|----------------|
+| **Naimur Rahman** | Introduction and Objectives |
+| **Hany Chowdhury** | System Design and Engineering Approach |
+| **Torikul Islam** | Hardware & Software Implementation, Simulation & Testing |
+| **Adham Elsaygh** | Challenges and Solutions |
 
-### Hardware Components
+---
+
+# 🎯 Project Objectives
+
+The objectives of this project are to:
+
+- Design an autonomous mobile robot capable of following a black line.
+- Detect and avoid obstacles during navigation.
+- Reacquire the line after obstacle avoidance.
+- Perform an automatic 180° turn after detecting the second obstacle.
+- Apply Systems Engineering principles throughout development.
+- Model the complete system using SysML.
+- Validate the final prototype through experimental testing.
+
+---
+
+# ⭐ Features
+
+- Autonomous Line Following
+- Obstacle Detection
+- Obstacle Avoidance
+- Automatic Line Reacquisition
+- 180° Turnaround
+- PWM Motor Speed Control
+- Embedded Arduino Software
+- SysML-Based System Design
+- Automated LaTeX Report Generation
+
+---
+
+# 🏗 System Architecture
+
+The robot consists of four major subsystems.
+
+| Subsystem | Components | Function |
+|------------|------------|----------|
+| Sensing | IR Sensors, Ultrasonic Sensors | Detects the line and obstacles |
+| Control | Arduino Uno | Processes sensor data |
+| Actuation | L293D Driver, DC Motors | Controls movement |
+| Power | 12V Battery | Powers the robot |
+
+---
+
+# 🔧 Hardware Components
 
 - Arduino Uno
-- IR Line Sensors
-- Ultrasonic Sensors
+- 2 × IR Line Sensors
+- 2 × HC-SR04 Ultrasonic Sensors
 - L293D Motor Driver
-- DC Motors
-- Battery Pack
-- Chassis and Wheels
+- 2 × DC Geared Motors
+- Breadboard
+- Wooden Chassis
+- 12 V Battery
+- Wheels
 
-### Software Components
+---
 
-- Arduino Embedded Program
-- Sensor Processing Logic
+# 🔌 Wiring Connections
+
+## 🔵 Arduino UNO Pin Configuration
+
+| Component | Arduino Pin | Description |
+|-----------|-------------|-------------|
+| Left IR Sensor | D2 | Left line detection |
+| Right IR Sensor | D12 | Right line detection |
+| Left Ultrasonic Trigger | D13 | Trigger signal |
+| Left Ultrasonic Echo | D4 | Echo signal |
+| Right Ultrasonic Trigger | D6 | Trigger signal |
+| Right Ultrasonic Echo | D7 | Echo signal |
+| Left Motor Enable (ENA) | D3 (PWM) | Speed control |
+| Left Motor IN1 | D8 | Motor direction |
+| Left Motor IN2 | D9 | Motor direction |
+| Right Motor Enable (ENB) | D5 (PWM) | Speed control |
+| Right Motor IN3 | D10 | Motor direction |
+| Right Motor IN4 | D11 | Motor direction |
+
+---
+
+## ⚡ Power Connections
+
+| Connection | Description |
+|------------|-------------|
+| 12 V Battery → Motor Driver | Main power supply |
+| Motor Driver 5 V → Arduino UNO | Regulated controller power |
+| Arduino 5 V → Sensors | Sensor power supply |
+| Common Ground | Shared by all components |
+
+> **Important:** All electronic modules share a common ground to ensure stable operation.
+
+---
+
+# 💻 Software Components
+
+- Arduino IDE
+- Embedded C++
 - Line Following Algorithm
 - Obstacle Detection Algorithm
-- Motor Control Logic
+- Obstacle Avoidance Routine
+- Line Reacquisition Logic
+- Motor Control Functions
 
 ---
 
-## Repository Structure
+# 🔄 Robot Operation
 
-```text
+The robot operates according to the following sequence:
 
-Systems_Engineering_A3/
-
-│
-
-├── Codes/
-
-├── Prototype_Design/
-
-├── SysML_Diagrams/
-
-├── Tinkercad_Design/
-
-│
-
-└── LineFollowingRobot_Report/
-
-    ├── figures/
-
-    ├── sections/
-
-    ├── main.tex
-
-    └── report.pdf
-
-```
+1. Detect the black line using IR sensors.
+2. Read sensor values.
+3. Calculate steering direction.
+4. Control both motors independently.
+5. Continuously monitor obstacles.
+6. Detect the first obstacle.
+7. Execute obstacle avoidance.
+8. Search for and reacquire the line.
+9. Continue navigation.
+10. Detect the second obstacle.
+11. Perform a 180° turn.
+12. Continue autonomous operation.
 
 ---
 
-## SysML Models
+# 📊 SysML Models
 
 The project documentation includes:
 
 - Block Definition Diagram (BDD)
 - Internal Block Diagram (IBD)
 - Use Case Diagram
-- Sequence Diagram
-- Package Diagram
 - Activity Diagram
+- Sequence Diagram
 - State Machine Diagram
+- Package Diagram
 
 ---
 
-## Robot Operation
+# 🧪 Testing
 
-1. IR sensors continuously detect the line position.
-2. Arduino processes sensor data.
-3. Motor driver adjusts wheel speeds.
-4. Ultrasonic sensors monitor obstacles.
-5. The robot follows the path while maintaining safe operation.
+The robot was experimentally evaluated using a custom test track with a **2.5 cm black line**, including gentle and sharp curves as well as two obstacles.
 
----
+### Testing Included
 
-## Simulation and Testing
-
-The system was tested through:
-
-- Sensor validation
-- Motor control verification
-- Line tracking experiments
-- Obstacle detection experiments
-- System integration testing
-
-Results demonstrate reliable line-following performance and successful obstacle detection under normal operating conditions.
+- IR Sensor Validation
+- Ultrasonic Sensor Validation
+- Motor Verification
+- Line Following
+- Sharp Curve Tracking
+- Gentle Curve Tracking
+- Obstacle Avoidance
+- Line Reacquisition
+- 180° Turn
+- Full System Integration
 
 ---
 
-## Technologies Used
+## 📈 Performance Summary
+
+| Test | Result |
+|------|--------|
+| Line Following | ✅ Successful |
+| Gentle Curves | ✅ Successful |
+| Sharp Curves | ✅ Successful |
+| First Obstacle Detection | ✅ Successful |
+| Obstacle Avoidance | ✅ Successful |
+| Line Reacquisition | ✅ Successful |
+| Second Obstacle Detection | ✅ Successful |
+| 180° Turn | ✅ Successful |
+| Complete Trials | **10 / 10** |
+| Overall Success Rate | **100%** |
+
+---
+
+# 🛠 Technologies Used
 
 - Arduino IDE
+- C++
 - GitHub
+- GitHub Actions
 - LaTeX (IEEE Format)
 - SysML
 - Visual Paradigm
@@ -134,40 +209,78 @@ Results demonstrate reliable line-following performance and successful obstacle 
 
 ---
 
-## Report Compilation
+# 📁 Repository Structure
 
-The project report is written in LaTeX and automatically compiled using GitHub Actions.
-
-Every push to the repository automatically:
-
-1. Builds the LaTeX report
-2. Generates the PDF
-3. Updates the latest report.pdf file
-
----
-
-### Latest Report
-
-[Download PDF Report](LineFollowingRobot_Report/report.pdf)
-
-
-## Future Improvements
-
-Potential enhancements include:
-
-- PID-based line tracking
-- Wireless communication
-- Improved obstacle avoidance
-- Machine learning-based navigation
-- Real-time telemetry monitoring
+```text
+Systems_Engineering_A3/
+│
+├── Codes/
+│
+├── Prototype_Design/
+│
+├── SysML_Diagrams/
+│
+├── Tinkercad_Design/
+│
+└── LineFollowingRobot_Report/
+    ├── figures/
+    ├── sections/
+    ├── main.tex
+    └── report.pdf
+```
 
 ---
 
-## Course Information
+# 📄 Report Compilation
 
-**Course:** Systems Engineering  
-**Program:** Electronic Engineering  
-**University:** Hochschule Hamm-Lippstadt (HSHL)  
-**Semester:** Summer Semester 2026
+The project documentation is written in **LaTeX** using the IEEE Conference format.
+
+GitHub Actions automatically:
+
+- Builds the report
+- Compiles the PDF
+- Commits the latest report
+- Keeps documentation up to date
 
 ---
+
+# 📚 Latest Report
+
+The latest IEEE report is available in:
+
+```
+LineFollowingRobot_Report/report.pdf
+```
+
+---
+
+# 🚀 Future Improvements
+
+Potential future enhancements include:
+
+- PID Controller
+- Wireless Communication
+- Bluetooth Monitoring
+- Wi-Fi Connectivity
+- Camera-Based Navigation
+- Machine Learning
+- Real-Time Telemetry
+- Improved Chassis Design
+- Battery Monitoring
+
+---
+
+# 🎓 Course Information
+
+| Item | Details |
+|------|---------|
+| Course | Systems Engineering |
+| Degree | Electronic Engineering |
+| University | Hochschule Hamm-Lippstadt |
+| Semester | Summer Semester 2026 |
+
+---
+
+# 📜 License
+
+This repository was developed for academic purposes as part of the **Systems Engineering** course at **Hochschule Hamm-Lippstadt**.
