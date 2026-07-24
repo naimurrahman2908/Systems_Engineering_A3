@@ -246,11 +246,9 @@ GitHub Actions automatically:
 
 # 📚 Latest Report
 
-The latest IEEE report is available in:
+The latest IEEE report is available below.
 
-```
-[Download PDF Report](LineFollowingRobot_Report/report.pdf)
-```
+➡️ **[Download PDF Report](./LineFollowingRobot_Report/report.pdf)**
 
 ---
 
