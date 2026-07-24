@@ -3,24 +3,19 @@
 
 \subsection{Experimental Setup}
 
-After completing the hardware and software implementation, the robot was evaluated on a custom test track consisting of a 2.5\,cm wide black line with both gentle and sharp curves. The testing environment also included two obstacles positioned along the track to evaluate the robot's obstacle detection and avoidance capabilities. Figure~\ref{fig:test_track} shows the robot during the experimental evaluation.
+After completing the hardware and software implementation, the robot was evaluated on a custom test track consisting of a 2.5\,cm wide black line. The track contained both gentle and sharp curves to evaluate the line-following performance under different path conditions. Two obstacles were also positioned along the course to test the obstacle detection, avoidance, and turnaround functions.
 
-The robot was tested repeatedly under identical operating conditions to verify the stability and reliability of the implemented control algorithm. During each experiment, the robot started from the same initial position and was required to autonomously follow the line, detect obstacles, execute the avoidance manoeuvre, and continue navigation without external intervention.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.48\linewidth]{testing_robot.png}
-\caption{Experimental evaluation of the robot on the designed testing track.}
-\label{fig:test_track}
-\end{figure}
+The robot was tested repeatedly under similar operating conditions. During each trial, it was required to follow the black line autonomously, detect the first obstacle, execute the avoidance manoeuvre, reacquire the line, detect the second obstacle, perform a 180$^\circ$ turn, and continue navigation without external control.
 
 \subsection{Experimental Results}
 
-Multiple experimental trials were conducted to evaluate the overall system performance. During testing, the robot consistently followed the predefined path while maintaining stable motion through both gentle and sharp curves. The infrared sensors successfully detected the line throughout the course, allowing continuous navigation with only minor steering corrections.
+Multiple experimental trials were conducted to evaluate the overall performance of the system. The robot successfully followed the predefined line through both gentle and sharp curves. The infrared sensors continuously detected the position of the track and allowed the controller to make the required steering corrections.
 
-The ultrasonic sensors reliably detected the first obstacle and initiated the programmed obstacle avoidance routine. After bypassing the obstacle, the robot successfully reacquired the line and resumed normal line-following operation. When the second obstacle was encountered, the controller executed the programmed 180$^\circ$ turning manoeuvre before continuing the navigation sequence. This behaviour was repeatedly verified during the experimental trials.
+When the first obstacle was detected, the ultrasonic sensors triggered the obstacle-avoidance routine. The robot successfully moved around the obstacle, searched for the black line, and resumed normal line-following operation after reacquiring the track.
 
-The implemented software demonstrated stable autonomous operation throughout repeated testing. The robot successfully completed the entire course during all evaluation runs, resulting in a success rate of 100\%.
+After passing the first obstacle, the robot continued along the course until the second obstacle was detected. At this stage, the controller executed the programmed 180$^\circ$ turning manoeuvre. The robot then followed the line in the opposite direction as required by the test sequence.
+
+The system was tested many times, and ten successful complete trials were recorded. During these trials, the robot completed the intended navigation sequence without manual intervention, corresponding to a recorded success rate of 100\%.
 
 \begin{table}[ht]
 \caption{Experimental Performance Summary}
@@ -32,10 +27,12 @@ The implemented software demonstrated stable autonomous operation throughout rep
 Line following & Successful \\
 Gentle curves & Successful \\
 Sharp curves & Successful \\
-First obstacle avoidance & Successful \\
+First obstacle detection & Successful \\
+Obstacle avoidance & Successful \\
+Line reacquisition & Successful \\
 Second obstacle detection & Successful \\
 180$^\circ$ turning manoeuvre & Successful \\
-Line reacquisition & Successful \\
+Complete successful trials & 10 out of 10 \\
 Overall success rate & 100\% \\
 \hline
 \end{tabular}
@@ -44,4 +41,6 @@ Overall success rate & 100\% \\
 
 \subsection{Performance Evaluation}
 
-The experimental results demonstrate that the developed robot satisfies the primary objectives of autonomous line following and obstacle avoidance. The integration of infrared sensing, ultrasonic distance measurement, and embedded motor control enabled reliable navigation under the tested operating conditions. The repeated successful trials indicate that the implemented control algorithm is sufficiently robust for the designed application while maintaining stable and efficient autonomous behaviour.
+The experimental results show that the developed robot achieved the main project objectives. The combination of infrared line sensing, ultrasonic obstacle detection, and embedded motor control enabled the robot to navigate the complete test course successfully.
+
+The robot moved at a sufficient operating speed while maintaining stable line-following performance. It was able to respond correctly to both obstacles and recover the track after the avoidance manoeuvre. The successful completion of ten recorded trials indicates that the implemented hardware and software provided reliable autonomous behaviour under the tested conditions.
