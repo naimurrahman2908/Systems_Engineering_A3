@@ -14,6 +14,6 @@ The primary goal of this project is to implement, test, and validate a working p
 \begin{itemize}
     \item {Line Following:} Use a set of infrared (IR) sensors and standard if-else logic to control the motors so the car cleanly follows a track line.
     \item {Obstacle Detection and Avoidance:} Integrate a pair of ultrasonic sensors to monitor front proximity metrics and implement a maneuver sequence to safely bypass detected obstructions before reacquiring the primary track line.
-    \item {Black Zone Detection and Turnaround:} Program the car to use its floor IR sensors to spot when it hits a solid black patch on the track, stop moving forward, spin 180 degrees on the spot, and follow the line back the other way.
+    \item {Secondary Obstacle Detection and Turnaround:} Program the car to use its front ultrasonic sensors to detect a second obstacle along the path, stop moving forward, spin 180 degrees on the spot, and follow the track back in the opposite direction.
     \item {Power and Motor Integration:} Wire the hardware so that a motor controller takes a 12V battery source, drops it down to 5V to safely power the Arduino, and handles the high-current demands of the DC motors.
 \end{itemize}
