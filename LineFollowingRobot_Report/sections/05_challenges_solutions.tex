@@ -1,3 +1,15 @@
 \section{Challenges and Solutions}
 \label{sec:challenges_solutions}
-this part is written by adham
+During the engineering and prototyping phases, several technical challenges were encountered across the hardware and software subsystems. 
+These obstacles were systematically resolved through testing, software adjustments, and control refinements.  
+
+A. Motor Speed Inconsistency and Straight-Line Drift
+A primary physical challenge involved mechanical and electrical variances between the two DC motors. When driven with identical pulse-width modulation (PWM) signals, differences in motor resistance and internal gear friction caused the robot to drift off course rather than moving straight.  
+Solution: To achieve balanced linear movement, a software calibration procedure was performed using trial and error. By iteratively tuning and assigning individual offset PWM values to each motor, the rotational speeds were balanced to ensure straight-line movement.
+
+B. Track Detection Strategy
+During line-following testing, initial attempts were made to navigate by tracking the white boundary outline surrounding the black track. However, this approach resulted in inconsistent sensor readings. Testing confirmed that tracking the solid black line directly produced significantly better results.
+Solution: The control logic and tracking strategy were reconfigured to target the solid black line directly. This adjustment provided higher contrast for the infrared sensors, leading to more reliable line tracking and smoother steering responses.
+C. Ultrasonic Sensor Noise and Ghost Obstacles
+During proximity measurement, the HC-SR04 ultrasonic sensors occasionally received false echo reflections from surrounding walls and non-target surfaces. This noise created "ghost obstacles," resulting in false-positive detections that caused the robot to stop prematurely.
+Solution: Software-level signal filtering was integrated into the obstacle-detection routine. The control algorithm was programmed to prouduce 2 consecutive range readings before triggering an action, ensuring avoidance maneuvers were only executed when a real obstacle was confirmed.
